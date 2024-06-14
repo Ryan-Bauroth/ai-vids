@@ -23,7 +23,7 @@ export const HelloWorld: React.FC<z.infer<typeof myCompSchema>> = ({
       <AbsoluteFill style={{backgroundColor: "black"}}>
         <Audio src={staticFile("song.mp3")} />
         <p style={({backgroundColor: "black", color: "white", fontSize: "48px"})}>INSERT CAPTION HERE</p>
-        <Video src={staticFile("vid.mp4")}/>
+        <Video src={staticFile("vid.mp4")} volume={0.0}/>
       </AbsoluteFill>
   );
 };
