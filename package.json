@@ -25,7 +25,7 @@
   },
   "scripts": {
     "start": "remotion studio",
-    "build": "remotion render HelloWorld out/remotionVideo.mp4",
+    "build": "remotion render vid out/remotionVideo.mp4",
     "upgrade": "remotion upgrade",
     "test": "eslint src --ext ts,tsx,js,jsx && tsc"
   },

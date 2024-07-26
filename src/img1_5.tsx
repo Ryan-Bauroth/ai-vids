@@ -11,7 +11,7 @@ export const myCompSchema = z.object({
     logoColor2: zColor(),
 });
 
-export const HelloWorld: React.FC<z.infer<typeof myCompSchema>> = () => {
+export const Img1_5: React.FC<z.infer<typeof myCompSchema>> = () => {
 
 // A <AbsoluteFill> is just a absolutely positioned <div>!
     return (
