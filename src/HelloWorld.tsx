@@ -21,7 +21,7 @@ export const HelloWorld: React.FC<z.infer<typeof myCompSchema>> = () => {
                 <div style={{position: 'relative'}}>
                     <p style={({
                         color: "white",
-                        fontSize: "32px",
+                        fontSize: "34px",
                         fontFamily: 'Trebuchet MS',
                         position: "absolute",
                         width: '540px',
@@ -30,17 +30,20 @@ export const HelloWorld: React.FC<z.infer<typeof myCompSchema>> = () => {
                         justifyContent: 'center',
                         textAlign: 'center',
                         padding: '17px',
-                        top: '100px'
+                        top: '100px',
+                        zIndex: '1',
+                        textShadow: '3px 3px black',
                     })}>
-                        Which do you want in your backyard?
+                        You are granted a spirit animal by Zeus. Which one do you pick?
                     </p>
                     <Img src={staticFile("image0.png")} style={{
                         position: 'absolute',
                         left: '50%',
-                        top: '57%',
+                        top: '50%',
                         transform: 'translate(0%, -50%)',
-                        width: '540px',
-                        height: '540px'
+                        width: '740px',
+                        height: '740px',
+                        zIndex: '0'
                     }}/>
                 </div>
             </Sequence>

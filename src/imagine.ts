@@ -3,9 +3,9 @@ const client = imaginesdk.client;
 const GenerationStyle = imaginesdk.GenerationStyle;
 const Status = imaginesdk.Status;
 
-const imagine = client("vk-XTtK18gCSZ20kyGHQ32QaEJXyHsPW1O3DPSxYDohghHG7")
+const imagine = client("vk-Ju9onXr2pzI9NqBd9yJ1VLSnwSFFvUzoFUY5j3psl82ubDL")
 
-const generationStyles = [GenerationStyle.ANIME, GenerationStyle.Realistic, 33]
+const generationStyles = [GenerationStyle.Realistic, 33] //GenerationStyle.ANIME,
 
 const main = async (prompt, iteration) => {
     const response = await imagine.generations(
@@ -13,6 +13,9 @@ const main = async (prompt, iteration) => {
         {
             style: generationStyles[getRandomInt(0, 2)], //generationStyles[getRandomInt(0, generationStyles.length)],
         },
+        {
+            aspect_ratio: '9:16',
+        }
 
     );
 
@@ -33,19 +36,31 @@ function getRandomInt(min, max) {
 }
 
 const prompts = [
-    "Design a majestic alien canyon with towering, iridescent rock formations and a glowing river winding through it. The scene should be photorealistic and captured in one high-resolution image from a dramatic vantage point.",
+    "Create a photorealistic image of a majestic **dragon** perched on a cliff overlooking a vast, enchanted forest with glowing flora and a misty valley below. The scene should highlight the dragon's shimmering scales and fiery breath, showcasing the magical and otherworldly environment in a single stunning photo.",
 
-    "Create a tranquil Earth-like arctic scene with crystal-clear ice formations, a serene frozen lake, and the Northern Lights dancing across the sky. The artwork should be highly detailed and presented as a single, breathtaking photo.",
+    "Generate a high-resolution image of a **glow-in-the-dark phoenix** soaring through a starry night sky, with its feathers casting a radiant glow over a serene, ancient temple nestled among mountains. The scene should be photorealistic and capture the mystical beauty of the phoenix and its celestial surroundings in one breathtaking photo.",
 
-    "Generate a vibrant, otherworldly coral reef with bioluminescent marine life and a translucent, colorful ocean. The image should be extremely realistic and captured in one stunning photo that highlights the surreal beauty of the underwater world.",
+    "Design a high-quality image of a **panda** in a lush **bamboo forest**, surrounded by towering bamboo stalks and dappled sunlight filtering through the leaves. The scene should be photorealistic, highlighting the panda's adorable features and the vibrant, green environment in a single captivating photo.",
 
-    "Imagine a futuristic cityscape on a distant planet with towering skyscrapers, floating vehicles, and an aurora-lit sky. The scene should be incredibly detailed and photorealistic, shown as a single high-resolution image from an expansive viewpoint.",
+    "Create a high-resolution image of a **majestic elephant** walking through the lush **Okavango Delta** in Botswana. The scene should capture the elephant’s grandeur as it moves through the verdant landscape, with a backdrop of tranquil water channels and rich vegetation. The photorealistic image should highlight the elephant’s textured skin and the vibrant, natural environment in one stunning photo.",
 
-    "Produce an enchanting Earth-like tropical rainforest with towering trees, exotic wildlife, and a misty waterfall cascading into a crystal-clear pool. The scene should be highly realistic, captured in one immersive and vibrant photo.",
+    "Generate a high-resolution image of a **snow leopard** stealthily prowling through a frosty Himalayan landscape, with snow-covered peaks and a rugged, icy terrain in the background. The scene should be photorealistic, capturing the leopard's elegant form and the harsh beauty of its cold environment in a single dramatic photo.",
 
-    "Create a breathtaking alien ice planet with sprawling frozen tundra, shimmering ice crystals, and a distant, glowing star. The image should be rendered in photorealistic detail and presented as a single, high-quality photo showcasing the alien landscape."
+    "Design a photorealistic image of a **bioluminescent jellyfish** drifting through an otherworldly, deep-sea abyss, with its glowing tentacles illuminating the dark waters and mysterious marine creatures floating nearby. The scene should be high-resolution and showcase the ethereal beauty of the jellyfish and its surreal surroundings in one captivating photo."
 ];
 
-let iteration = 0
 
-main(prompts[iteration], iteration)
+let iteration = 4
+
+//main(prompts[iteration], iteration)
+
+
+async function runMain(){
+    for(let i = 0; i < 6; i++){
+        console.log(i)
+        await main(prompts[i], i)
+        console.log("run " + i)
+    }
+}
+
+runMain()
