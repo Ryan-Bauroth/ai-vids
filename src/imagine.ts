@@ -2,21 +2,22 @@ const imaginesdk = require("imaginesdk");
 const client = imaginesdk.client;
 const GenerationStyle = imaginesdk.GenerationStyle;
 const Status = imaginesdk.Status;
+const _ = require('lodash');
+const { newGenerateGenAIPrompts } = require('./google.js');
 
-const imagine = client("vk-Ju9onXr2pzI9NqBd9yJ1VLSnwSFFvUzoFUY5j3psl82ubDL")
+require('dotenv').config()
 
-const generationStyles = [GenerationStyle.Realistic, 33] //GenerationStyle.ANIME,
+const imagine = client(process.env.IMAGINE_API_KEY)
+
+const generationStyles = [GenerationStyle.Realistic] //GenerationStyle.ANIME,
 
 const main = async (prompt, iteration) => {
     const response = await imagine.generations(
         prompt,
         {
-            style: generationStyles[getRandomInt(0, 2)], //generationStyles[getRandomInt(0, generationStyles.length)],
+            style: generationStyles[getRandomInt(0, generationStyles.length)], //generationStyles[getRandomInt(0, generationStyles.length)],
+            aspectRatio: '9:16'
         },
-        {
-            aspect_ratio: '9:16',
-        }
-
     );
 
     if (response.status() === Status.OK) {
@@ -35,32 +36,41 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
 }
 
+let iteration = 0
+
 const prompts = [
-    "Create a photorealistic image of a majestic **dragon** perched on a cliff overlooking a vast, enchanted forest with glowing flora and a misty valley below. The scene should highlight the dragon's shimmering scales and fiery breath, showcasing the magical and otherworldly environment in a single stunning photo.",
-
-    "Generate a high-resolution image of a **glow-in-the-dark phoenix** soaring through a starry night sky, with its feathers casting a radiant glow over a serene, ancient temple nestled among mountains. The scene should be photorealistic and capture the mystical beauty of the phoenix and its celestial surroundings in one breathtaking photo.",
-
-    "Design a high-quality image of a **panda** in a lush **bamboo forest**, surrounded by towering bamboo stalks and dappled sunlight filtering through the leaves. The scene should be photorealistic, highlighting the panda's adorable features and the vibrant, green environment in a single captivating photo.",
-
-    "Create a high-resolution image of a **majestic elephant** walking through the lush **Okavango Delta** in Botswana. The scene should capture the elephant’s grandeur as it moves through the verdant landscape, with a backdrop of tranquil water channels and rich vegetation. The photorealistic image should highlight the elephant’s textured skin and the vibrant, natural environment in one stunning photo.",
-
-    "Generate a high-resolution image of a **snow leopard** stealthily prowling through a frosty Himalayan landscape, with snow-covered peaks and a rugged, icy terrain in the background. The scene should be photorealistic, capturing the leopard's elegant form and the harsh beauty of its cold environment in a single dramatic photo.",
-
-    "Design a photorealistic image of a **bioluminescent jellyfish** drifting through an otherworldly, deep-sea abyss, with its glowing tentacles illuminating the dark waters and mysterious marine creatures floating nearby. The scene should be high-resolution and showcase the ethereal beauty of the jellyfish and its surreal surroundings in one captivating photo."
+    "Generate a high-quality, realistic image of an abandoned grand hotel lobby, featuring ornate chandeliers, dusty furniture, and peeling wallpaper. Ensure the scene is empty of people and conveys a sense of past luxury contrasted with current decay.",
+    "Create a high-resolution, realistic image of a derelict amusement park, highlighting rusting rides, overgrown vegetation, and empty pathways. Capture the eerie, nostalgic feel of the deserted attractions with no human figures present.",
+    "Produce a lifelike, high-quality image of an abandoned industrial factory, focusing on crumbling machinery, dusty floors, and neglected workspaces. The scene should illustrate the stark contrast between previous activity and current abandonment, with no people included.",
+    "Generate a high-definition, realistic image of a forsaken school, emphasizing empty classrooms with dusty desks and abandoned playgrounds overtaken by nature. Convey the melancholic atmosphere of the school with no human presence.",
+    "Create a high-quality, realistic image of a deserted shopping mall, featuring vacant storefronts, faded advertisements, and empty corridors. Ensure the scene reflects the haunting stillness of the mall with no people present."
 ];
 
-
-let iteration = 4
-
-//main(prompts[iteration], iteration)
-
-
 async function runMain(){
-    for(let i = 0; i < 6; i++){
-        console.log(i)
-        await main(prompts[i], i)
-        console.log("run " + i)
-    }
+    const promptNum = 8
+    const realPromptNum = 6
+    // let prompts = await newGenerateGenAIPrompts(
+    //     "Discover high-quality, realistic images of abandoned places, where once-vibrant locations like forgotten theaters and derelict factories now stand in silent solitude, their haunting beauty captured without the presence of people, allowing the stillness and decay to tell their own compelling stories.",
+    //     promptNum
+    // )
+    //
+    // prompts = _.shuffle(prompts)
+    //
+    // if(prompts.length >= realPromptNum) {
+    //     prompts = prompts.filter((item, index) => index < realPromptNum)
+    // }
+
+    console.dir(prompts)
+
+    const mainPromises = prompts.map((prompt, i) => {
+        console.log(i);
+        return main(prompt.trim(), i);
+    });
+
+    await Promise.all(mainPromises);
+
+    console.log("All runs completed.");
 }
 
 runMain()
+//main(prompts[iteration], iteration)

@@ -5,9 +5,13 @@
   "repository": {},
   "license": "UNLICENSED",
   "dependencies": {
+    "@google-ai/generativelanguage": "^2.6.0",
     "@remotion/cli": "4.0.174",
     "@remotion/zod-types": "4.0.174",
     "beat-beat-js": "^0.0.0",
+    "dotenv": "^16.4.5",
+    "google-auth-library": "^9.11.0",
+    "instagram-private-api": "^1.46.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "remotion": "4.0.174",

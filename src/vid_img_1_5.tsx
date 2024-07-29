@@ -1,5 +1,5 @@
 import {
-    AbsoluteFill, staticFile, Sequence, Img, Audio
+    AbsoluteFill, staticFile, Sequence, Img, Audio, Video
 } from "remotion";
 import {z} from "zod";
 
@@ -7,9 +7,17 @@ export const myCompSchema = z.object({
     song: z.string()
 });
 
-const slideLength = 4.5
+const slideLength = 3
+const videos = {
+    hopsital: "/introvids/abandoned_hospital.mp4",
+    rain_house: "/introvids/raining_mountain_house.mp4",
+    rain_rainforest_house: '/introvids/raining_rainforest_house.mp4',
+    underwater: "introvids/underwater.mp4",
+    rain_food: "introvids/raining_food.mp4",
+    glow_rings: "introvids/glowing_rings.mp4",
+}
 
-export const Img1_5: React.FC<z.infer<typeof myCompSchema>> = (schema) => {
+export const Vid_Img1_5: React.FC<z.infer<typeof myCompSchema>> = (schema) => {
 
 // A <AbsoluteFill> is just a absolutely positioned <div>!
     return (
@@ -35,16 +43,16 @@ export const Img1_5: React.FC<z.infer<typeof myCompSchema>> = (schema) => {
                         POV: You are at the Olympics
                         <br/>
                         <br/>
-                        Which French food do you eat first?
+                        Which abandoned stadium do you spend the night in?
                     </p>
-                    <Img src={staticFile("image0.png")} style={{
+                    <Video src={staticFile(videos.glow_rings)} style={{
                         position: 'absolute',
                         left: '50%',
                         top: '50%',
-                        transform: 'translate(0%, -50%)',
+                        transform: 'translate(0%, -48%)',
                         zIndex: '0',
-                        width: "540px"
-                    }}/>
+                        width: "600px"
+                    }} />
                 </div>
             </Sequence>
             <Sequence from={30 * slideLength} durationInFrames={30 * slideLength}>
@@ -66,7 +74,7 @@ export const Img1_5: React.FC<z.infer<typeof myCompSchema>> = (schema) => {
                     })}>
                         1
                     </p>
-                    <Img src={staticFile("image1.png")} style={{
+                    <Img src={staticFile("image0.png")} style={{
                         position: 'absolute',
                         left: '50%',
                         top: '50%',
@@ -95,7 +103,7 @@ export const Img1_5: React.FC<z.infer<typeof myCompSchema>> = (schema) => {
                     })}>
                         2
                     </p>
-                    <Img src={staticFile("image2.png")} style={{
+                    <Img src={staticFile("image1.png")} style={{
                         position: 'absolute',
                         left: '50%',
                         top: '50%',
@@ -124,7 +132,7 @@ export const Img1_5: React.FC<z.infer<typeof myCompSchema>> = (schema) => {
                     })}>
                         3
                     </p>
-                    <Img src={staticFile("image3.png")} style={{
+                    <Img src={staticFile("image2.png")} style={{
                         position: 'absolute',
                         left: '50%',
                         top: '50%',
@@ -153,7 +161,7 @@ export const Img1_5: React.FC<z.infer<typeof myCompSchema>> = (schema) => {
                     })}>
                         4
                     </p>
-                    <Img src={staticFile("image4.png")} style={{
+                    <Img src={staticFile("image3.png")} style={{
                         position: 'absolute',
                         left: '50%',
                         top: '50%',
@@ -182,7 +190,7 @@ export const Img1_5: React.FC<z.infer<typeof myCompSchema>> = (schema) => {
                     })}>
                         5
                     </p>
-                    <Img src={staticFile("image5.png")} style={{
+                    <Img src={staticFile("image4.png")} style={{
                         position: 'absolute',
                         left: '50%',
                         top: '50%',
