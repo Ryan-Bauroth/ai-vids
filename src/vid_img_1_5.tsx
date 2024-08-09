@@ -9,12 +9,22 @@ export const myCompSchema = z.object({
 
 const slideLength = 3
 const videos = {
-    hopsital: "/introvids/abandoned_hospital.mp4",
+    hospital: "/introvids/abandoned_hospital.mp4",
+    mall: "/introvids/abandoned_mall.mp4",
     rain_house: "/introvids/raining_mountain_house.mp4",
     rain_rainforest_house: '/introvids/raining_rainforest_house.mp4',
     underwater: "introvids/underwater.mp4",
     rain_food: "introvids/raining_food.mp4",
     glow_rings: "introvids/glowing_rings.mp4",
+    glow_ring: "introvids/glowing_ring.mp4",
+    ocean_waves: "introvids/ocean_wave.mp4",
+    snowfall_lodge: "introvids/snowfall_lodge.mp4",
+    anime_city: "introvids/anime_city.mp4",
+    new_york_rain: "introvids/newyork_rain.mp4",
+    wave_lighthouse: "introvids/wave_lighthouse.mp4",
+    night_waves: "introvids/night_waves.mp4",
+    titanic_space_glow: "introvids/titanic_space_glow.mp4",
+    titanic_space_movement: "introvids/titanic_space_movement.mp4",
 }
 
 export const Vid_Img1_5: React.FC<z.infer<typeof myCompSchema>> = (schema) => {
@@ -22,7 +32,7 @@ export const Vid_Img1_5: React.FC<z.infer<typeof myCompSchema>> = (schema) => {
 // A <AbsoluteFill> is just a absolutely positioned <div>!
     return (
         <AbsoluteFill style={{backgroundColor: "black"}}>
-            <Audio src={staticFile(schema.song)}></Audio>
+            <Audio src={staticFile("music/" + schema.song)}></Audio>
             <Sequence durationInFrames={30 * slideLength}>
                 <div style={{position: 'relative'}}>
                     <p style={({
@@ -40,12 +50,12 @@ export const Vid_Img1_5: React.FC<z.infer<typeof myCompSchema>> = (schema) => {
                         zIndex: '1',
                         textShadow: '3px 3px black',
                     })}>
-                        POV: You are at the Olympics
+                        You and a friend get a free vacation
                         <br/>
                         <br/>
-                        Which abandoned stadium do you spend the night in?
+                        Which oceanfront house do you pick?
                     </p>
-                    <Video src={staticFile(videos.glow_rings)} style={{
+                    <Video src={staticFile(videos.underwater)} style={{
                         position: 'absolute',
                         left: '50%',
                         top: '50%',

@@ -36,14 +36,15 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
 }
 
-let iteration = 0
+let iteration = 4
 
 const prompts = [
-    "Generate a high-quality, realistic image of an abandoned grand hotel lobby, featuring ornate chandeliers, dusty furniture, and peeling wallpaper. Ensure the scene is empty of people and conveys a sense of past luxury contrasted with current decay.",
-    "Create a high-resolution, realistic image of a derelict amusement park, highlighting rusting rides, overgrown vegetation, and empty pathways. Capture the eerie, nostalgic feel of the deserted attractions with no human figures present.",
-    "Produce a lifelike, high-quality image of an abandoned industrial factory, focusing on crumbling machinery, dusty floors, and neglected workspaces. The scene should illustrate the stark contrast between previous activity and current abandonment, with no people included.",
-    "Generate a high-definition, realistic image of a forsaken school, emphasizing empty classrooms with dusty desks and abandoned playgrounds overtaken by nature. Convey the melancholic atmosphere of the school with no human presence.",
-    "Create a high-quality, realistic image of a deserted shopping mall, featuring vacant storefronts, faded advertisements, and empty corridors. Ensure the scene reflects the haunting stillness of the mall with no people present."
+    "A cozy, rustic cabin with a stone fireplace, featuring a plush bed with soft blankets, nestled in a snowy forest. Lanterns cast a warm glow, creating a serene nighttime atmosphere.",
+    "A luxurious yurt with elegant furnishings and a comfortable, inviting bed, set in a peaceful meadow under a starry night sky, softly illuminated by ambient lights from inside.",
+    "A charming seaside tent with a comfortable bed, set on a quiet moonlit beach. Gentle waves lap at the shore, and a campfire glows softly nearby, providing a cozy and relaxing spot.",
+    "A secluded bamboo bungalow with a thatched roof and a hammock draped in the open air, set amidst a lush garden. Soft lantern lighting and the sounds of nature create a tranquil nighttime setting.",
+    "A quaint mountain lodge with a warm, inviting bed placed next to a roaring fireplace, surrounded by a snowy landscape, offering a cozy retreat for a restful night.",
+    "A serene glamping tent with plush bedding and fairy lights, set in picturesque countryside. The clear, star-filled sky and peaceful surroundings make for a relaxing night under the stars."
 ];
 
 async function runMain(){
@@ -59,13 +60,11 @@ async function runMain(){
     // if(prompts.length >= realPromptNum) {
     //     prompts = prompts.filter((item, index) => index < realPromptNum)
     // }
-
-    console.dir(prompts)
-
+    // console.dir(prompts)
     const mainPromises = prompts.map((prompt, i) => {
-        console.log(i);
         return main(prompt.trim(), i);
     });
+    console.log(prompts.length)
 
     await Promise.all(mainPromises);
 
